@@ -72,28 +72,28 @@ const questions = [
     },
 ];
 
-function writeToFile(fileName, template) {
-    fs.writeFile(fileName, template, function (err) {
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
         console.log(fileName);
 
         if (err) {
             return console.log(err);
         } else {
-            return console.log("Success, readme file has been created!");
+            return console.log("Generated readme file!");
         }
     })
-}
+};
 
 function init() {
     inquirer
         .prompt(questions)
         .then((answers) => {
-            // console.log(answers);
+            console.log(answers);
             var readme = generateMarkdown(answers);
-            // console.log(readme);
-            writeToFile('ExampleREADME.md', readme);
+            console.log(readme);
+            writeToFile('./ExampleREADME.md', readme);
         });
-}
+};
 
 // Function call to initialize app
 init();
